@@ -1,7 +1,7 @@
 import { db } from '../../../../lib/db';
 import { hashPassword } from '../../../../lib/passwords';
 import { jsonError, requireAdmin, sameOrigin } from '../../../../lib/access';
-import { isValidPassword, isValidUsername, normalizeUsername } from '../../../../lib/validation';
+import { MAX_PLAYERS, isValidPassword, isValidUsername, normalizeUsername } from '../../../../lib/validation';
 export const runtime = 'nodejs';
 
 export async function GET() {
@@ -32,7 +32,7 @@ export async function POST(req) {
     if (!isValidPassword(password)) return jsonError('Usa una contraseña de entre 8 y 128 caracteres');
     const { count, error: countError } = await db().from('realms_users').select('*', { count: 'exact', head: true });
     if (countError) throw countError;
-    if (count >= 10) return jsonError('Has llegado al máximo de 10 jugadores');
+    if (count >= MAX_PLAYERS) return jsonError(`Has llegado al máximo de ${MAX_PLAYERS} jugadores`);
     const password_hash = await hashPassword(password);
     const { error } = await db().from('realms_users').insert({ username: name, password_hash });
     if (error) return jsonError(error.code === '23505' ? 'Ese usuario ya existe' : 'No se pudo crear el usuario');

@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { DisconnectReason, Room, RoomEvent, Track } from 'livekit-client';
+import { MAX_PLAYERS } from '../lib/validation';
 
 async function request(path, { method = 'GET', body } = {}) {
   try {
@@ -575,7 +576,7 @@ function AdminPanel() {
           <span className="eyebrow">SOLO ADMINISTRADOR</span>
           <h2>Jugadores</h2>
         </div>
-        <span className="count">{users.length}/10</span>
+        <span className="count">{users.length}/{MAX_PLAYERS}</span>
       </div>
       <p>Crea los accesos y entrega a cada amigo su usuario y contraseña. Ellos no pueden registrarse.</p>
 
@@ -608,7 +609,7 @@ function AdminPanel() {
             required
           />
         </div>
-        <button className="button primary" disabled={busy || users.length >= 10}>
+        <button className="button primary" disabled={busy || users.length >= MAX_PLAYERS}>
           {busy ? 'GUARDANDO...' : 'CREAR CUENTA'}
         </button>
       </form>
@@ -765,7 +766,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="footer">REALMS VOZ · HECHO PARA UN GRUPO DE 10 AMIGOS</footer>
+      <footer className="footer">REALMS VOZ · HECHO PARA UN GRUPO DE {MAX_PLAYERS} AMIGOS</footer>
     </main>
   );
 }

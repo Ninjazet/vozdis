@@ -1,12 +1,12 @@
 # REALMS VOZ — Sala privada para Minecraft Bedrock
 
-Una web en español para 10 amigos. **Solo el propietario crea cuentas**: cada jugador entra con **usuario y contraseña**, sin correo ni registro público. Diseño adaptable a móvil y PC.
+Una web en español para 20 amigos. **Solo el propietario crea cuentas**: cada jugador entra con **usuario y contraseña**, sin correo ni registro público. Diseño adaptable a móvil y PC.
 
 ## Qué incluye
 
 - Inicio de sesión por nombre y contraseña.
 - Una sala compartida de voz, micrófono, silenciar, salir y lista de conectados.
-- Panel del administrador para **crear hasta 10 cuentas**, cambiar contraseñas y borrar cuentas.
+- Panel del administrador para **crear hasta 20 cuentas**, cambiar contraseñas y borrar cuentas.
 - Las contraseñas de los jugadores se guardan con hash `scrypt`; el navegador recibe cookies `HttpOnly`.
 - Ningún secreto de Supabase o LiveKit se expone al navegador.
 - No incluye cámara, mensajes, canales adicionales, registro público ni complementos de Minecraft.
